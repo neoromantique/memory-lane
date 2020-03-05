@@ -29,3 +29,7 @@ lxc config set $CONTAINER_NAME limits.cpu 2
   lxc config set $CONTAINER_NAME limits.memory.swap 1024MB
   lxc config set $CONTAINER_NAME limits.memory.swap.priority 0
 ```
+Forward a port from lxc to host
+```
+lxc config device add $CONTAINER_NAME $DEVICE_NAME proxy listen=tcp:0.0.0.0:1337 connect=tcp:127.0.0.1:1337
+```
