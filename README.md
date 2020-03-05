@@ -21,3 +21,11 @@ Attach host folder
 ```
   lxc config device add $CONTAINER_NAME $MOUNT_NAME disk source=/var/www/ path=/var/www
 ```
+Limit container resources 
+```
+lxc config set $CONTAINER_NAME limits.cpu 2
+  lxc config set $CONTAINER_NAME limits.memory 2024MB
+  lxc config get $CONTAINER_NAME limits.memory.swap 
+  lxc config set $CONTAINER_NAME limits.memory.swap 1024MB
+  lxc config set $CONTAINER_NAME limits.memory.swap.priority 0
+```
