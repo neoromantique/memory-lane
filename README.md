@@ -3,6 +3,7 @@
 - [Memory Lane](#memory-lane)
     - [About](#About)
     - [iptables](#iptables)
+    - [network](#network)
     - [lxc](#lxc)
 
 ## About
@@ -10,15 +11,31 @@ Storage of snippets that I use too frequently to google every time, but too infr
 
 ## iptables
 
+Simple NAT masquerade
+```
+    iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE 
+```
+
+## network
+
 Replace default gateway 
 ```
     ip route replace default via 1.2.3.4
 ```
 
-
-Simple NAT masquerade
+Swap mac address
 ```
-    iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE 
+    ifconfig eth0 hw ether $MAC
+```
+
+Port Scan
+```
+    nc -v -n -z -wl $TARGET $IP_FROM-$IP_TO 
+```
+
+Easy HTTP server
+```
+    python -m SimpleHTTPServer 1337
 ```
 
 ## lxc
