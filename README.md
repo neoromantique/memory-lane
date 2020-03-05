@@ -10,6 +10,12 @@ Storage of snippets that I use too frequently to google every time, but too infr
 
 ## iptables
 
+Replace default gateway 
+```
+    ip route replace default via 1.2.3.4
+```
+
+
 Simple NAT masquerade
 ```
     iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE 
