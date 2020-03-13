@@ -67,3 +67,14 @@ Forward a port from lxc to host
 ```shell
     lxc config device add $CONTAINER_NAME $DEVICE_NAME proxy listen=tcp:0.0.0.0:1337 connect=tcp:127.0.0.1:1337
 ```
+
+## notifications
+
+Curl telegram message
+
+```shell
+	curl -X POST \
+	     -H 'Content-Type: application/json' \
+	     -d '{"chat_id": "$CHATID", "text": "Message Text", "disable_notification": true}' \
+	     https://api.telegram.org/bot$BOT_TOKEN/sendMessage
+```
