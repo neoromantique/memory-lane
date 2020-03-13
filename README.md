@@ -5,6 +5,7 @@
   * [iptables](#iptables)
   * [network](#network)
   * [lxc](#lxc)
+  * [notifications](#notifications)
 
 ## About
 
