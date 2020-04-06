@@ -79,3 +79,11 @@ Curl telegram message
 	     -d '{"chat_id": "$CHATID", "text": "Message Text", "disable_notification": true}' \
 	     https://api.telegram.org/bot$BOT_TOKEN/sendMessage
 ```
+
+## Unscategorised 
+
+Substitute shell vars in a file (Templating)
+
+```shell
+envsubst < /etc/radsecproxy.conf.tmpl > /etc/radsecproxy.conf
+```
