@@ -5,6 +5,7 @@
   * [iptables](#iptables)
   * [network](#network)
   * [lxc](#lxc)
+  * [heroku](#heroku)
   * [notifications](#notifications)
 
 ## About
@@ -67,6 +68,14 @@ Forward a port from lxc to host
 
 ```shell
     lxc config device add $CONTAINER_NAME $DEVICE_NAME proxy listen=tcp:0.0.0.0:1337 connect=tcp:127.0.0.1:1337
+```
+
+## heroku
+
+Cancel a stuck build
+```shell
+heroku plugins:install heroku-builds #first time
+heroku builds:cancel $BUILD_UUID -a $APP_ID
 ```
 
 ## notifications
