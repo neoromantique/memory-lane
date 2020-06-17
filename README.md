@@ -89,10 +89,19 @@ Curl telegram message
 	     https://api.telegram.org/bot$BOT_TOKEN/sendMessage
 ```
 
-## Unscategorised 
+## Uncategorised 
 
 Substitute shell vars in a file (Templating)
 
 ```shell
 envsubst < /etc/radsecproxy.conf.tmpl > /etc/radsecproxy.conf
+```
+
+Make DELL PowerEdge servers shut up
+
+```shell
+# enter manual fan control mode
+ipmitool -I lanplus -H $IDRAC_HOST -U root -P $IDRAC_PW raw 0x30 0x30 0x01 0x00 
+# make the noise go away, shhhh...
+ipmitool -I lanplus -H $IDRAC_HOST -U root -P $IDRAC_PW raw 0x30 0x30 0x02 0xff 0x09
 ```
