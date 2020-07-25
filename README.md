@@ -3,10 +3,12 @@
 * [Memory Lane](#memory-lane)
   * [About](#About)
   * [iptables](#iptables)
+  * [general Linux tidbits](#linux)
   * [network](#network)
   * [lxc](#lxc)
   * [heroku](#heroku)
   * [notifications](#notifications)
+  * [misc](#uncategorised)
 
 ## About
 
@@ -44,6 +46,14 @@ Easy HTTP server
 
 ```shell
     python -m SimpleHTTPServer 1337
+```
+
+## linux
+
+Increase inotify watcher limits
+
+```shell
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 ```
 
 ## lxc
@@ -89,7 +99,7 @@ Curl telegram message
 	     https://api.telegram.org/bot$BOT_TOKEN/sendMessage
 ```
 
-## Uncategorised 
+## uncategorised 
 
 Substitute shell vars in a file (Templating)
 
