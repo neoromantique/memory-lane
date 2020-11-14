@@ -7,7 +7,8 @@
   * [network](#network)
   * [lxc](#lxc)
   * [heroku](#heroku)
-  * [notifications](#notifications)
+  * [notifications](#notifications)  
+  * [git](#git)
   * [misc](#uncategorised)
 
 ## About
@@ -97,6 +98,27 @@ Curl telegram message
 	     -H 'Content-Type: application/json' \
 	     -d '{"chat_id": "$CHATID", "text": "Message Text", "disable_notification": true}' \
 	     https://api.telegram.org/bot$BOT_TOKEN/sendMessage
+```
+
+## git
+
+Archive untracked files
+
+```
+git ls-files --others --exclude-standard -z |\
+
+xargs -0 tar rvf ~/backup-untracked.zip
+```
+
+find in all commits
+
+```
+
+git rev-list –all | xargs git grep -F ‘font-size: 52 px;’
+
+F3022…9e12:HtmlTemplate/style.css: font-size: 52 px;
+
+E9211…8244:RR.Web/Content/style/style.css: font-size: 52 px;
 ```
 
 ## uncategorised 
