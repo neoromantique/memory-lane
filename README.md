@@ -4,6 +4,7 @@
   * [About](#About)
   * [iptables](#iptables)
   * [general Linux tidbits](#linux)
+  * [scripting](#scripting)
   * [network](#network)
   * [lxc](#lxc)
   * [heroku](#heroku)
@@ -55,6 +56,18 @@ Increase inotify watcher limits
 
 ```shell
 echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+```
+
+## scripting
+
+Bash profiling
+
+At the top of the script:
+```shell
+N=`date +%s%N`; export PS4='+[$(((`date +%s%N`-$N)/1000000))ms][${BASH_SOURCE}:${LINENO}]: ${FUNCNAME[0]:+${FUNCNAME[0]}(): }';
+exec 19>$HOME/logfile
+BASH_XTRACEFD=19
+set -x
 ```
 
 ## lxc
