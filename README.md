@@ -150,3 +150,17 @@ ipmitool -I lanplus -H $IDRAC_HOST -U root -P $IDRAC_PW raw 0x30 0x30 0x01 0x00
 # make the noise go away, shhhh...
 ipmitool -I lanplus -H $IDRAC_HOST -U root -P $IDRAC_PW raw 0x30 0x30 0x02 0xff 0x09
 ```
+
+GitHub Actions, set up Maven for local runs using act
+
+```yaml
+    - name: Download Maven
+      run: |
+        curl -sL https://www-eu.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip -o maven.zip
+        apt-get update
+        apt-get -y install unzip
+        unzip -d /usr/share maven.zip
+        rm maven.zip
+        ln -s /usr/share/apache-maven-3.6.3/bin/mvn /usr/bin/mvn
+        echo "M2_HOME=/usr/share/apache-maven-3.6.3" | tee -a /etc/environment
+```
