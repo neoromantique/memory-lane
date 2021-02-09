@@ -7,6 +7,7 @@
   * [scripting](#scripting)
   * [network](#network)
   * [lxc](#lxc)
+  * [docker](#docker)
   * [heroku](#heroku)
   * [notifications](#notifications)  
   * [git](#git)
@@ -92,6 +93,14 @@ Forward a port from lxc to host
 
 ```shell
     lxc config device add $CONTAINER_NAME $DEVICE_NAME proxy listen=tcp:0.0.0.0:1337 connect=tcp:127.0.0.1:1337
+```
+
+## Docker
+
+List docs from all docker containers
+
+```shell
+	sudo sysdig -pc -cspy_logs
 ```
 
 ## heroku
