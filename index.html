@@ -1,18 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8"/>
-  <title>Memory Lane</title>
-</head>
-<body>
-  <div id="content"></div>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script> 
-    fetch('/README.md')
-  .then(response => response.text())
-  .then((data) => {
-    document.getElementById('content').innerHTML = marked(data)
-  })
-  </script>
-</body>
+    <head>
+        <meta charset="utf-8" />
+        <title>Memory Lane</title>
+    </head>
+    <body>
+        <div id="content"></div>
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <script>
+            fetch("/README.md")
+                .then((response) => response.text())
+                .then((data) => {
+                    document.getElementById("content").innerHTML = marked(data);
+                })
+                .then(() => {
+                    const codeblock = document.querySelectorAll("pre");
+
+                    codeblock.forEach((el) => {
+                        el.onclick = function () {
+                            document.execCommand("copy");
+
+                            el.addEventListener("copy", function (event) {
+                                event.preventDefault();
+                                if (event.clipboardData) {
+                                    event.clipboardData.setData("text/plain", el.textContent);
+                                    console.log(event.clipboardData.getData("text"));
+                                }
+                            });
+                        };
+                    });
+                });
+        </script>
+    </body>
 </html>
