@@ -24,7 +24,7 @@ Storage of snippets that I use too frequently to google every time, but too infr
 Simple NAT masquerade
 
 ```shell
-    iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE 
+iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE 
 ```
 
 ## network
@@ -32,25 +32,25 @@ Simple NAT masquerade
 Replace default gateway
 
 ```shell
-    ip route replace default via 1.2.3.4
+ip route replace default via 1.2.3.4
 ```
 
 Swap mac address
 
 ```shell
-    ifconfig eth0 hw ether $MAC
+ifconfig eth0 hw ether $MAC
 ```
 
 Port Scan
 
 ```shell
-    nc -v -n -z -wl $TARGET $IP_FROM-$IP_TO
+nc -v -n -z -wl $TARGET $IP_FROM-$IP_TO
 ```
 
 Easy HTTP server
 
 ```shell
-    python -m SimpleHTTPServer 1337
+python -m SimpleHTTPServer 1337
 ```
 
 ## linux
@@ -78,23 +78,23 @@ set -x
 Attach host folder
 
 ```shell
-    lxc config device add $CONTAINER_NAME $MOUNT_NAME disk source=/var/www/ path=/var/www
+lxc config device add $CONTAINER_NAME $MOUNT_NAME disk source=/var/www/ path=/var/www
 ```
 
 Limit container resources
 
 ```shell
-    lxc config set $CONTAINER_NAME limits.cpu 2
-    lxc config set $CONTAINER_NAME limits.memory 2024MB
-    lxc config get $CONTAINER_NAME limits.memory.swap 
-    lxc config set $CONTAINER_NAME limits.memory.swap 1024MB
-    lxc config set $CONTAINER_NAME limits.memory.swap.priority 0
+lxc config set $CONTAINER_NAME limits.cpu 2
+lxc config set $CONTAINER_NAME limits.memory 2024MB
+lxc config get $CONTAINER_NAME limits.memory.swap 
+lxc config set $CONTAINER_NAME limits.memory.swap 1024MB
+lxc config set $CONTAINER_NAME limits.memory.swap.priority 0
 ```
 
 Forward a port from lxc to host
 
 ```shell
-    lxc config device add $CONTAINER_NAME $DEVICE_NAME proxy listen=tcp:0.0.0.0:1337 connect=tcp:127.0.0.1:1337
+lxc config device add $CONTAINER_NAME $DEVICE_NAME proxy listen=tcp:0.0.0.0:1337 connect=tcp:127.0.0.1:1337
 ```
 
 ## Docker
@@ -105,7 +105,7 @@ Forward a port from lxc to host
 List docs from all docker containers
 
 ```shell
-	sudo sysdig -pc -cspy_logs
+sudo sysdig -pc -cspy_logs
 ```
 
 ## heroku
@@ -121,10 +121,10 @@ heroku builds:cancel $BUILD_UUID -a $APP_ID
 Curl telegram message
 
 ```shell
-	curl -X POST \
-	     -H 'Content-Type: application/json' \
-	     -d '{"chat_id": "$CHATID", "text": "Message Text", "disable_notification": true}' \
-	     https://api.telegram.org/bot$BOT_TOKEN/sendMessage
+curl -X POST \
+	 -H 'Content-Type: application/json' \
+	 -d '{"chat_id": "$CHATID", "text": "Message Text", "disable_notification": true}' \
+	 https://api.telegram.org/bot$BOT_TOKEN/sendMessage
 ```
 
 ## databases
@@ -204,13 +204,13 @@ ipmitool -I lanplus -H $IDRAC_HOST -U root -P $IDRAC_PW raw 0x30 0x30 0x02 0xff 
 GitHub Actions, set up Maven for local runs using act
 
 ```yaml
-    - name: Download Maven
-      run: |
-        curl -sL https://www-eu.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip -o maven.zip
-        apt-get update
-        apt-get -y install unzip
-        unzip -d /usr/share maven.zip
-        rm maven.zip
-        ln -s /usr/share/apache-maven-3.6.3/bin/mvn /usr/bin/mvn
-        echo "M2_HOME=/usr/share/apache-maven-3.6.3" | tee -a /etc/environment
+- name: Download Maven
+  run: |
+	curl -sL https://www-eu.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip -o maven.zip
+	apt-get update
+	apt-get -y install unzip
+	unzip -d /usr/share maven.zip
+	rm maven.zip
+	ln -s /usr/share/apache-maven-3.6.3/bin/mvn /usr/bin/mvn
+	echo "M2_HOME=/usr/share/apache-maven-3.6.3" | tee -a /etc/environment
 ```
