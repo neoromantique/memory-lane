@@ -13,6 +13,7 @@
   * [notifications](#notifications) 
   * [databases](#databases) 
   * [git](#git)
+  * [mac os](#macos)
   * [misc](#uncategorised)
 
 ## About
@@ -99,6 +100,14 @@ lxc config device add $CONTAINER_NAME $DEVICE_NAME proxy listen=tcp:0.0.0.0:1337
 
 ## Docker
 
+Auto update docker containers that contain label
+```shell
+docker run -d \
+--name watchtower \
+-v /var/run/docker.sock:/var/run/docker.sock \
+containrrr/watchtower --label-enable -i 60
+
+```
 
 ## Sysdig 
 
@@ -184,6 +193,13 @@ F3022…9e12:HtmlTemplate/style.css: font-size: 52 px;
 E9211…8244:RR.Web/Content/style/style.css: font-size: 52 px;
 ```
 
+## Mac OS
+
+Reset stuck Microphone Indicator and/or fix any weirdness with audio on mac os
+```shell 
+sudo kill -9 `ps ax|grep 'coreaudio[a-z]' | awk '{print $1}'
+```
+
 ## uncategorised 
 
 Substitute shell vars in a file (Templating)
@@ -213,4 +229,9 @@ GitHub Actions, set up Maven for local runs using act
 	rm maven.zip
 	ln -s /usr/share/apache-maven-3.6.3/bin/mvn /usr/bin/mvn
 	echo "M2_HOME=/usr/share/apache-maven-3.6.3" | tee -a /etc/environment
+```
+
+Makeshift redirect to push prometheus metrics into a Victoria Metrics ingest. (Every time this gets used beyond just testing some prometheus maintainer gets irrationally angry)
+```shell 
+watch -n 5 "docker exec app_container curl -s localhost:8060/metrics | curl -s -u basic:auth --data-binary @- https://victoriametrics.enterprise.com/api/v1/import/prometheus?extra_label=env=makeshift_pusher"
 ```
